@@ -8,5 +8,9 @@ class Person:
         Person.people[name] = self
 
 def create_person_list(people: list) -> list:
-    # write your code here
-    pass
+    person_list = []
+    for person in people:
+        one_person = Person(person["name"], person["age"])
+        person_list.append(one_person)
+
+    return person_list
