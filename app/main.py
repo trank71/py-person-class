@@ -15,23 +15,12 @@ def create_person_list(people: list) -> list:
         for person_one in people
     ]
 
-    for family in people:
-        person = Person.people[family["name"]]
+    for i, raw in enumerate(people):
 
-        wife_name = family.get("wife")
-        if wife_name is not None:
-            if wife_name not in Person.people:
-                raise ValueError(
-                    f"Wife {wife_name} not found for {person.name}"
-                )
-            person.wife = Person.people[wife_name]
+        if raw.get("wife") is not None:
+            person_list[i].wife = Person.people[raw["wife"]]
 
-        husband_name = family.get("husband")
-        if husband_name is not None:
-            if husband_name not in Person.people:
-                raise ValueError(
-                    f"Husband {husband_name} not found for {person.name}"
-                )
-            person.husband = Person.people[husband_name]
+        if raw.get("husband") is not None:
+            person_list[i].husband = Person.people[raw["husband"]]
 
     return person_list
